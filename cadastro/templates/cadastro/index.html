@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/ce36c4a3ef.js" crossorigin="anonymous"></script>
+    <title>Página Inicial</title>
+    <style>
+        .new {
+            color: black;
+            background: green;
+            padding: 10px 20px 10px 20px;
+            border-radius: 4px;
+            margin: 30px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 style="text-align: center;">Lista de Reservas</h2>
+    <a class="new" href="{% url 'reserva_criar' %}">Novo Cadastro</a>
+    <hr>
+    {% for reserva in reservas %}
+    <ul class="list-group">
+        <li class="list-group-item"><strong>CNPJ</strong>: {{reserva.CNPJ}}</li>
+        <li class="list-group-item"><strong>NOME DA EMPRESA</strong>: {{reserva.nome_empresa}}</li>
+        <li class="list-group-item"><strong>CATEGORIA DA EMPRESA</strong>: {{reserva.categoria_empresa}}</li>
+        <li class="list-group-item"><strong>ESTÁ QUITADO</strong>: {{reserva.quitado}}</li>
+        <li class="list-group-item"><strong>STAND</strong>: {{reserva.stand}}</li>
+        <li class="list-group-item">
+            <a style="margin-right: 10px;" href="{% url 'reserva_editar' id=reserva.id %}"><i
+                    class="fa-solid fa-pen-to-square"></i></a>
+            <a href="{% url 'reserva_remover' id=reserva.id %}"><i class="fa-solid fa-trash"></i></a>
+            <a href="{% url 'reserva_detalhar' id=reserva.id %}">Detalhes</a>
+        </li>
+    </ul>
+    <hr>
+    {% endfor %}
+</body>
+
+</html>
