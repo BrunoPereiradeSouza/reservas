@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Reservas</title>
+</head>
+
+<body>
+    <form method="GET">
+        <p>{{reserva_list.form.as_p}}</p>
+        <button type="submit">Enviar</button>
+    </form>
+    <br>
+    {%for obj in reserva_list.qs%}
+    <ul class="list-group">
+        <li class="list-group-item"><strong>CNPJ</strong>: {{obj.CNPJ}}</li>
+        <li class="list-group-item"><strong>NOME DA EMPRESA</strong>: {{obj.nome_empresa}}</li>
+        <li class="list-group-item"><strong>CATEGORIA DA EMPRESA</strong>: {{obj.categoria_empresa}}</li>
+        <li class="list-group-item"><strong>ESTÁ QUITADO</strong>: {{obj.quitado}}</li>
+        <li class="list-group-item"><strong>STAND</strong>: {{obj.stand}}</li>
+        <li class="list-group-item">
+    </ul>
+    {% endfor %}
+</body>
+</html>

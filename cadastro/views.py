@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .form import ReservaForm
 from .models import Reserva, Stand
+from .filters import ReservaFilter
 # Create your views here.
 
 def reserva_editar(request, id):
@@ -45,3 +46,11 @@ def reserva_detalhar(request, id):
 
     return render(request, 'cadastro/detalhe_reserva.html', context)
 
+def reserva_filtrar(request):
+    object_list = Reserva.objects.all()
+    reserva_list = ReservaFilter(request.GET, queryset=object_list)
+    context = {'object_list': object_list, 'reserva_list': reserva_list}
+
+    return render(request, 'cadastro/reserva_filter.html', context)
+
+    

@@ -15,6 +15,7 @@ class Reserva(models.Model):
     categoria_empresa = models.CharField(max_length=100)
     quitado = models.BooleanField()
     stand = models.ForeignKey(Stand, on_delete=models.CASCADE)
+    data = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.nome_empresa
